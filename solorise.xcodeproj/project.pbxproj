@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A42BFBE577008EEA6E /* AppDelegate.swift */; };
+		6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */; };
+		6D2435A92BFBE577008EEA6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A82BFBE577008EEA6E /* ViewController.swift */; };
+		6D2435AC2BFBE577008EEA6E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435AB2BFBE577008EEA6E /* Base */; };
+		6D2435AE2BFBE578008EEA6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435AD2BFBE578008EEA6E /* Assets.xcassets */; };
+		6D2435B12BFBE578008EEA6E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435B02BFBE578008EEA6E /* Base */; };
+		6D2435BC2BFBE578008EEA6E /* soloriseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435BB2BFBE578008EEA6E /* soloriseTests.swift */; };
+		6D2435C62BFBE578008EEA6E /* soloriseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435C52BFBE578008EEA6E /* soloriseUITests.swift */; };
+		6D2435C82BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435C72BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D2435B82BFBE578008EEA6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D2435992BFBE577008EEA6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D2435A02BFBE577008EEA6E;
+			remoteInfo = solorise;
+		};
+		6D2435C22BFBE578008EEA6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D2435992BFBE577008EEA6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D2435A02BFBE577008EEA6E;
+			remoteInfo = solorise;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6D2435A12BFBE577008EEA6E /* solorise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = solorise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2435A42BFBE577008EEA6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6D2435A82BFBE577008EEA6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6D2435AB2BFBE577008EEA6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D2435AD2BFBE578008EEA6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D2435B02BFBE578008EEA6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D2435B22BFBE578008EEA6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D2435B72BFBE578008EEA6E /* soloriseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soloriseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2435BB2BFBE578008EEA6E /* soloriseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soloriseTests.swift; sourceTree = "<group>"; };
+		6D2435C12BFBE578008EEA6E /* soloriseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soloriseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2435C52BFBE578008EEA6E /* soloriseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soloriseUITests.swift; sourceTree = "<group>"; };
+		6D2435C72BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soloriseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D24359E2BFBE577008EEA6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435B42BFBE578008EEA6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435BE2BFBE578008EEA6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D2435982BFBE577008EEA6E = {
+			isa = PBXGroup;
+			children = (
+				6D2435A32BFBE577008EEA6E /* solorise */,
+				6D2435BA2BFBE578008EEA6E /* soloriseTests */,
+				6D2435C42BFBE578008EEA6E /* soloriseUITests */,
+				6D2435A22BFBE577008EEA6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6D2435A22BFBE577008EEA6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435A12BFBE577008EEA6E /* solorise.app */,
+				6D2435B72BFBE578008EEA6E /* soloriseTests.xctest */,
+				6D2435C12BFBE578008EEA6E /* soloriseUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D2435A32BFBE577008EEA6E /* solorise */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435A42BFBE577008EEA6E /* AppDelegate.swift */,
+				6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */,
+				6D2435A82BFBE577008EEA6E /* ViewController.swift */,
+				6D2435AA2BFBE577008EEA6E /* Main.storyboard */,
+				6D2435AD2BFBE578008EEA6E /* Assets.xcassets */,
+				6D2435AF2BFBE578008EEA6E /* LaunchScreen.storyboard */,
+				6D2435B22BFBE578008EEA6E /* Info.plist */,
+			);
+			path = solorise;
+			sourceTree = "<group>";
+		};
+		6D2435BA2BFBE578008EEA6E /* soloriseTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435BB2BFBE578008EEA6E /* soloriseTests.swift */,
+			);
+			path = soloriseTests;
+			sourceTree = "<group>";
+		};
+		6D2435C42BFBE578008EEA6E /* soloriseUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435C52BFBE578008EEA6E /* soloriseUITests.swift */,
+				6D2435C72BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift */,
+			);
+			path = soloriseUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D2435A02BFBE577008EEA6E /* solorise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D2435CB2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "solorise" */;
+			buildPhases = (
+				6D24359D2BFBE577008EEA6E /* Sources */,
+				6D24359E2BFBE577008EEA6E /* Frameworks */,
+				6D24359F2BFBE577008EEA6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = solorise;
+			productName = solorise;
+			productReference = 6D2435A12BFBE577008EEA6E /* solorise.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6D2435B62BFBE578008EEA6E /* soloriseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D2435CE2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseTests" */;
+			buildPhases = (
+				6D2435B32BFBE578008EEA6E /* Sources */,
+				6D2435B42BFBE578008EEA6E /* Frameworks */,
+				6D2435B52BFBE578008EEA6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D2435B92BFBE578008EEA6E /* PBXTargetDependency */,
+			);
+			name = soloriseTests;
+			productName = soloriseTests;
+			productReference = 6D2435B72BFBE578008EEA6E /* soloriseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6D2435C02BFBE578008EEA6E /* soloriseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D2435D12BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseUITests" */;
+			buildPhases = (
+				6D2435BD2BFBE578008EEA6E /* Sources */,
+				6D2435BE2BFBE578008EEA6E /* Frameworks */,
+				6D2435BF2BFBE578008EEA6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D2435C32BFBE578008EEA6E /* PBXTargetDependency */,
+			);
+			name = soloriseUITests;
+			productName = soloriseUITests;
+			productReference = 6D2435C12BFBE578008EEA6E /* soloriseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D2435992BFBE577008EEA6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					6D2435A02BFBE577008EEA6E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					6D2435B62BFBE578008EEA6E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6D2435A02BFBE577008EEA6E;
+					};
+					6D2435C02BFBE578008EEA6E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6D2435A02BFBE577008EEA6E;
+					};
+				};
+			};
+			buildConfigurationList = 6D24359C2BFBE577008EEA6E /* Build configuration list for PBXProject "solorise" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6D2435982BFBE577008EEA6E;
+			productRefGroup = 6D2435A22BFBE577008EEA6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D2435A02BFBE577008EEA6E /* solorise */,
+				6D2435B62BFBE578008EEA6E /* soloriseTests */,
+				6D2435C02BFBE578008EEA6E /* soloriseUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D24359F2BFBE577008EEA6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D2435AE2BFBE578008EEA6E /* Assets.xcassets in Resources */,
+				6D2435B12BFBE578008EEA6E /* Base in Resources */,
+				6D2435AC2BFBE577008EEA6E /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435B52BFBE578008EEA6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435BF2BFBE578008EEA6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D24359D2BFBE577008EEA6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D2435A92BFBE577008EEA6E /* ViewController.swift in Sources */,
+				6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */,
+				6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435B32BFBE578008EEA6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D2435BC2BFBE578008EEA6E /* soloriseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2435BD2BFBE578008EEA6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D2435C82BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift in Sources */,
+				6D2435C62BFBE578008EEA6E /* soloriseUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D2435B92BFBE578008EEA6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D2435A02BFBE577008EEA6E /* solorise */;
+			targetProxy = 6D2435B82BFBE578008EEA6E /* PBXContainerItemProxy */;
+		};
+		6D2435C32BFBE578008EEA6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D2435A02BFBE577008EEA6E /* solorise */;
+			targetProxy = 6D2435C22BFBE578008EEA6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6D2435AA2BFBE577008EEA6E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D2435AB2BFBE577008EEA6E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6D2435AF2BFBE578008EEA6E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D2435B02BFBE578008EEA6E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D2435C92BFBE578008EEA6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D2435CA2BFBE578008EEA6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D2435CC2BFBE578008EEA6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = solorise/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.solorise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D2435CD2BFBE578008EEA6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = solorise/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.solorise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6D2435CF2BFBE578008EEA6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.soloriseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/solorise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/solorise";
+			};
+			name = Debug;
+		};
+		6D2435D02BFBE578008EEA6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.soloriseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/solorise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/solorise";
+			};
+			name = Release;
+		};
+		6D2435D22BFBE578008EEA6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.soloriseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = solorise;
+			};
+			name = Debug;
+		};
+		6D2435D32BFBE578008EEA6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = navid.soloriseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = solorise;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D24359C2BFBE577008EEA6E /* Build configuration list for PBXProject "solorise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D2435C92BFBE578008EEA6E /* Debug */,
+				6D2435CA2BFBE578008EEA6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D2435CB2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "solorise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D2435CC2BFBE578008EEA6E /* Debug */,
+				6D2435CD2BFBE578008EEA6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D2435CE2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D2435CF2BFBE578008EEA6E /* Debug */,
+				6D2435D02BFBE578008EEA6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D2435D12BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D2435D22BFBE578008EEA6E /* Debug */,
+				6D2435D32BFBE578008EEA6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D2435992BFBE577008EEA6E /* Project object */;
+}
