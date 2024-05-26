@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D6F5DC44BEC251E0CC92BB0 /* Pods_solorise_soloriseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B0B80157B3A7FFED744C11 /* Pods_solorise_soloriseUITests.framework */; };
 		6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A42BFBE577008EEA6E /* AppDelegate.swift */; };
 		6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */; };
-		6D2435A92BFBE577008EEA6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A82BFBE577008EEA6E /* ViewController.swift */; };
-		6D2435AC2BFBE577008EEA6E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435AB2BFBE577008EEA6E /* Base */; };
+		6D2435A92BFBE577008EEA6E /* FirstScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A82BFBE577008EEA6E /* FirstScreenController.swift */; };
 		6D2435AE2BFBE578008EEA6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435AD2BFBE578008EEA6E /* Assets.xcassets */; };
 		6D2435B12BFBE578008EEA6E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D2435B02BFBE578008EEA6E /* Base */; };
 		6D2435BC2BFBE578008EEA6E /* soloriseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435BB2BFBE578008EEA6E /* soloriseTests.swift */; };
 		6D2435C62BFBE578008EEA6E /* soloriseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435C52BFBE578008EEA6E /* soloriseUITests.swift */; };
 		6D2435C82BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435C72BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift */; };
+		6DED032F2C02A30300F3592F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED032E2C02A30300F3592F /* Constants.swift */; };
+		CB92D56C626D4F302C185948 /* Pods_soloriseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5563EBCBE8CCC52B1904C1F9 /* Pods_soloriseTests.framework */; };
+		E406022E0DC0E5D1592AD2BE /* Pods_solorise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F680D5DBD07A748DABEE0756 /* Pods_solorise.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B5FECC4141D1DB1D0ED7942 /* Pods-solorise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise.debug.xcconfig"; path = "Target Support Files/Pods-solorise/Pods-solorise.debug.xcconfig"; sourceTree = "<group>"; };
+		41B0B80157B3A7FFED744C11 /* Pods_solorise_soloriseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_solorise_soloriseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5563EBCBE8CCC52B1904C1F9 /* Pods_soloriseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_soloriseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ACF37B33AFC3A4EE759CE21 /* Pods-solorise-soloriseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise-soloriseUITests.release.xcconfig"; path = "Target Support Files/Pods-solorise-soloriseUITests/Pods-solorise-soloriseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		61DCAC099809229B5EF5676C /* Pods-soloriseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-soloriseTests.release.xcconfig"; path = "Target Support Files/Pods-soloriseTests/Pods-soloriseTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D2435A12BFBE577008EEA6E /* solorise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = solorise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2435A42BFBE577008EEA6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6D2435A82BFBE577008EEA6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6D2435AB2BFBE577008EEA6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D2435A82BFBE577008EEA6E /* FirstScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenController.swift; sourceTree = "<group>"; };
 		6D2435AD2BFBE578008EEA6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D2435B02BFBE578008EEA6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D2435B22BFBE578008EEA6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +56,11 @@
 		6D2435C12BFBE578008EEA6E /* soloriseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soloriseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2435C52BFBE578008EEA6E /* soloriseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soloriseUITests.swift; sourceTree = "<group>"; };
 		6D2435C72BFBE578008EEA6E /* soloriseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soloriseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6DED032E2C02A30300F3592F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7864D47C0D2A11049B8F8877 /* Pods-solorise-soloriseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise-soloriseUITests.debug.xcconfig"; path = "Target Support Files/Pods-solorise-soloriseUITests/Pods-solorise-soloriseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A0F07006FE9B8D49B38F1604 /* Pods-solorise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise.release.xcconfig"; path = "Target Support Files/Pods-solorise/Pods-solorise.release.xcconfig"; sourceTree = "<group>"; };
+		C07844C20C51B3BAB08A0078 /* Pods-soloriseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-soloriseTests.debug.xcconfig"; path = "Target Support Files/Pods-soloriseTests/Pods-soloriseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F680D5DBD07A748DABEE0756 /* Pods_solorise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_solorise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E406022E0DC0E5D1592AD2BE /* Pods_solorise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB92D56C626D4F302C185948 /* Pods_soloriseTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D6F5DC44BEC251E0CC92BB0 /* Pods_solorise_soloriseUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054A5F8977A31FFA67CA06F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B5FECC4141D1DB1D0ED7942 /* Pods-solorise.debug.xcconfig */,
+				A0F07006FE9B8D49B38F1604 /* Pods-solorise.release.xcconfig */,
+				7864D47C0D2A11049B8F8877 /* Pods-solorise-soloriseUITests.debug.xcconfig */,
+				5ACF37B33AFC3A4EE759CE21 /* Pods-solorise-soloriseUITests.release.xcconfig */,
+				C07844C20C51B3BAB08A0078 /* Pods-soloriseTests.debug.xcconfig */,
+				61DCAC099809229B5EF5676C /* Pods-soloriseTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6D2435982BFBE577008EEA6E = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +111,8 @@
 				6D2435BA2BFBE578008EEA6E /* soloriseTests */,
 				6D2435C42BFBE578008EEA6E /* soloriseUITests */,
 				6D2435A22BFBE577008EEA6E /* Products */,
+				054A5F8977A31FFA67CA06F6 /* Pods */,
+				9AEE0E5A0C85BBE47376818B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +129,15 @@
 		6D2435A32BFBE577008EEA6E /* solorise */ = {
 			isa = PBXGroup;
 			children = (
-				6D2435A42BFBE577008EEA6E /* AppDelegate.swift */,
-				6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */,
-				6D2435A82BFBE577008EEA6E /* ViewController.swift */,
-				6D2435AA2BFBE577008EEA6E /* Main.storyboard */,
-				6D2435AD2BFBE578008EEA6E /* Assets.xcassets */,
-				6D2435AF2BFBE578008EEA6E /* LaunchScreen.storyboard */,
+				6DED032D2C02A2F600F3592F /* Support */,
+				6DED032C2C02A2A600F3592F /* ViewModel */,
+				6D32C1952BFC14B900237B67 /* ApiClient */,
+				6D32C1942BFC149600237B67 /* Resource */,
+				6D32C1932BFC147A00237B67 /* Service */,
+				6D32C1922BFC146100237B67 /* Extensions */,
+				6D32C1912BFC0FB100237B67 /* Controllers */,
+				6D32C1902BFC0FA400237B67 /* Views */,
+				6D32C18F2BFC0F9800237B67 /* Models */,
 				6D2435B22BFBE578008EEA6E /* Info.plist */,
 			);
 			path = solorise;
@@ -127,6 +160,85 @@
 			path = soloriseUITests;
 			sourceTree = "<group>";
 		};
+		6D32C18F2BFC0F9800237B67 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6D32C1902BFC0FA400237B67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D32C1912BFC0FB100237B67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435A82BFBE577008EEA6E /* FirstScreenController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6D32C1922BFC146100237B67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6D32C1932BFC147A00237B67 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6D32C1942BFC149600237B67 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */,
+				6D2435A42BFBE577008EEA6E /* AppDelegate.swift */,
+				6D2435AD2BFBE578008EEA6E /* Assets.xcassets */,
+				6D2435AF2BFBE578008EEA6E /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6D32C1952BFC14B900237B67 /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
+		6DED032C2C02A2A600F3592F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6DED032D2C02A2F600F3592F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				6DED032E2C02A30300F3592F /* Constants.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		9AEE0E5A0C85BBE47376818B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F680D5DBD07A748DABEE0756 /* Pods_solorise.framework */,
+				41B0B80157B3A7FFED744C11 /* Pods_solorise_soloriseUITests.framework */,
+				5563EBCBE8CCC52B1904C1F9 /* Pods_soloriseTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +246,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D2435CB2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "solorise" */;
 			buildPhases = (
+				4590381D4C07058316FD5C61 /* [CP] Check Pods Manifest.lock */,
 				6D24359D2BFBE577008EEA6E /* Sources */,
 				6D24359E2BFBE577008EEA6E /* Frameworks */,
 				6D24359F2BFBE577008EEA6E /* Resources */,
@@ -151,6 +264,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D2435CE2BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseTests" */;
 			buildPhases = (
+				74DC5950C294F31CD756AADA /* [CP] Check Pods Manifest.lock */,
 				6D2435B32BFBE578008EEA6E /* Sources */,
 				6D2435B42BFBE578008EEA6E /* Frameworks */,
 				6D2435B52BFBE578008EEA6E /* Resources */,
@@ -169,6 +283,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D2435D12BFBE578008EEA6E /* Build configuration list for PBXNativeTarget "soloriseUITests" */;
 			buildPhases = (
+				817BB263C69E238EBE5A527C /* [CP] Check Pods Manifest.lock */,
 				6D2435BD2BFBE578008EEA6E /* Sources */,
 				6D2435BE2BFBE578008EEA6E /* Frameworks */,
 				6D2435BF2BFBE578008EEA6E /* Resources */,
@@ -233,7 +348,6 @@
 			files = (
 				6D2435AE2BFBE578008EEA6E /* Assets.xcassets in Resources */,
 				6D2435B12BFBE578008EEA6E /* Base in Resources */,
-				6D2435AC2BFBE577008EEA6E /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +367,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4590381D4C07058316FD5C61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-solorise-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74DC5950C294F31CD756AADA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-soloriseTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		817BB263C69E238EBE5A527C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-solorise-soloriseUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6D24359D2BFBE577008EEA6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2435A92BFBE577008EEA6E /* ViewController.swift in Sources */,
+				6D2435A92BFBE577008EEA6E /* FirstScreenController.swift in Sources */,
 				6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */,
 				6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */,
+				6DED032F2C02A30300F3592F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +481,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6D2435AA2BFBE577008EEA6E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D2435AB2BFBE577008EEA6E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6D2435AF2BFBE578008EEA6E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -437,6 +613,7 @@
 		};
 		6D2435CC2BFBE578008EEA6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B5FECC4141D1DB1D0ED7942 /* Pods-solorise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -446,9 +623,10 @@
 				INFOPLIST_FILE = solorise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +642,7 @@
 		};
 		6D2435CD2BFBE578008EEA6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0F07006FE9B8D49B38F1604 /* Pods-solorise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,9 +652,10 @@
 				INFOPLIST_FILE = solorise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +671,7 @@
 		};
 		6D2435CF2BFBE578008EEA6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C07844C20C51B3BAB08A0078 /* Pods-soloriseTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +691,7 @@
 		};
 		6D2435D02BFBE578008EEA6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61DCAC099809229B5EF5676C /* Pods-soloriseTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -529,6 +711,7 @@
 		};
 		6D2435D22BFBE578008EEA6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7864D47C0D2A11049B8F8877 /* Pods-solorise-soloriseUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -546,6 +729,7 @@
 		};
 		6D2435D32BFBE578008EEA6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ACF37B33AFC3A4EE759CE21 /* Pods-solorise-soloriseUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
