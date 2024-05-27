@@ -1,0 +1,110 @@
+//
+//  Networr.swift
+//  solorise
+//
+//  Created by Navid Sheikh on 27/05/2024.
+//
+
+import Foundation
+
+enum NetworkError : Error{
+    case failedToCreateRequest
+    case failedToFetchData
+    case failedToDecode
+    case unAuthorized
+    case customError(code: Int, message : String)
+    case invalidReponse
+    
+}
+
+
+
+final class NetworkManager{
+    
+    /// Shared singleton
+    static var shared = NetworkManager()
+    
+    /// Private Constructor
+    private init(){}
+    
+    public func execute <T: Codable>(_ urlRequest: URLRequest?, expecting type : T.Type, completion : @escaping (Result<T, Error>) -> Void){
+        
+        guard let urlRequest = urlRequest else {
+            completion(.failure(NetworkError.failedToCreateRequest))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
+            guard let data = data, error == nil, let httpResponse = response as? HTTPURLResponse else{
+                completion(.failure(NetworkError.failedToFetchData))
+                return
+            }
+            print(error)
+            print (httpResponse.statusCode)
+            //Ensure response code is correct
+            guard (200...299).contains(httpResponse.statusCode) else{
+                do{
+                    let errorResponse =  try JSONDecoder().decode(ApiErrorResponse.self, from: data)
+                    completion(.failure(
+                        NetworkError.customError(code: errorResponse.code, message: errorResponse.message)
+                    ))
+                    
+                }catch{
+                    completion(.failure(NetworkError.invalidReponse))
+                }
+                return
+                
+            }
+            
+            //Decode the object
+            do{
+                //DEUBBING: Look at the raw JSON values
+                let jsonObject =  try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+                print(jsonObject)
+                let result =  try JSONDecoder().decode(type.self, from: data)
+                completion(.success(result))
+            }catch let error as DecodingError{
+                
+               //DEBUGGING: Show the error in each request
+               switch error {
+               case .typeMismatch(_, let context):
+                   print("Type mismatch: \(context.debugDescription)")
+               case .dataCorrupted(let context):
+                   print("Data corrupted: \(context.debugDescription)")
+               case .keyNotFound(_, let context):
+                   print("Key not found: \(context.debugDescription)")
+               case .valueNotFound(_, let context):
+                   print("Value not found: \(context.debugDescription)")
+               @unknown default:
+                   print("Unknown decoding error: \(error.localizedDescription)")
+               }
+                completion(.failure(NetworkError.failedToDecode))
+            }catch {
+                print("Unexpected error: \(error.localizedDescription)")
+                completion(.failure(NetworkError.failedToDecode))
+            }
+            
+        
+        }
+        task.resume()
+        
+    }
+}
+
+
+extension NetworkManager{
+    
+    public func test <T:Codable>(expecting type: T.Type, completion: @escaping (Result <T, Error>) -> Void){
+        
+        let request =  Request(endpoint: .test)
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+        
+        
+    }
+}
