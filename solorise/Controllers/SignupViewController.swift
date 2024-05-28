@@ -6,3 +6,24 @@
 //
 
 import Foundation
+import UIKit
+
+
+
+
+class SignupViewController : UIViewController{
+    
+    //MARK: Variables
+    
+    
+    
+    
+    //MARK: Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    
+    
+    
+}
