@@ -24,8 +24,17 @@ final class NetworkManager{
     /// Shared singleton
     static var shared = NetworkManager()
     
-    /// Private Constructor
-    private init(){}
+    /// URLSession instance
+    private let session: URLSession
+      
+      /// Private Constructor
+    private init() {
+          let config = URLSessionConfiguration.default
+          config.httpCookieAcceptPolicy = .always
+          config.httpCookieStorage = HTTPCookieStorage.shared
+          self.session = URLSession(configuration: config)
+      }
+
     
     public func execute <T: Codable>(_ urlRequest: URLRequest?, expecting type : T.Type, completion : @escaping (Result<T, Error>) -> Void){
         
@@ -34,7 +43,7 @@ final class NetworkManager{
             return
         }
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
+        let task = session.dataTask(with: urlRequest) { [weak self] data, response, error in
             guard let data = data, error == nil, let httpResponse = response as? HTTPURLResponse else{
                 completion(.failure(NetworkError.failedToFetchData))
                 return
@@ -89,6 +98,33 @@ final class NetworkManager{
         task.resume()
         
     }
+    
+    /// Method to check if there are cookies stored
+    public func hasCookies() -> Bool {
+        if let cookies = HTTPCookieStorage.shared.cookies, !cookies.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    /// Method to print all keys and values of the cookies
+    public func printCookies() {
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                print("Name: \(cookie.name), Value: \(cookie.value)")
+                print("Properties:")
+                if let properties = cookie.properties {
+                    for (key, value) in properties {
+                        print("  \(key.rawValue): \(value)")
+                    }
+                }
+            }
+        } else {
+            print("No cookies found.")
+        }
+    }
+
 }
 
 
@@ -104,7 +140,86 @@ extension NetworkManager{
             guard let _ = self else { return }
             completion(result)
         }
+    }
+    
+    public func register <T:Codable> (_ userData :  [String: Any], expecting type : T.Type, completion : @escaping (Result <T, Error>)->Void ){
+        let jsonData  =  try? JSONSerialization.data(withJSONObject: userData)
         
+        //Use the url request builder
+        let request  =  Request(endpoint: .auth, pathComponents: ["signup"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(body: jsonData)
+            .set(method: .POST)
+            .build()
+        
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
         
     }
+    
+    public func login<T:Codable>(_ userData : [String: Any], expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        //Send the data to server
+        let jsonData  =  try? JSONSerialization.data(withJSONObject: userData)
+
+        //Use the url request builder
+        let request  =  Request(endpoint: .auth, pathComponents: ["login"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(body: jsonData)
+            .set(method: .POST)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+        
+    }
+    
+    /// Method to sign out and clear cookies
+    public func logout<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
+        
+        // Optionally, you can make a network request to inform the server about the sign-out
+        //Use the url request builder
+        let request  =  Request(endpoint: .auth, pathComponents: ["logout"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .POST)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    
+    
+    /// Method to sign out and clear cookies
+    public func testAuth<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        // Optionally, you can make a network request to inform the server about the sign-out
+        //Use the url request builder
+        let request  =  Request(endpoint: .auth, pathComponents: ["test"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    
+    
+    
 }

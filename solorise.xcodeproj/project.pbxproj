@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5D6F5DC44BEC251E0CC92BB0 /* Pods_solorise_soloriseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B0B80157B3A7FFED744C11 /* Pods_solorise_soloriseUITests.framework */; };
+		6D0FE6B02C13DC4100A42246 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FE6AF2C13DC4100A42246 /* AuthHeaderView.swift */; };
+		6D0FE6B22C13E28E00A42246 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FE6B12C13E28E00A42246 /* WebViewController.swift */; };
+		6D0FE6B62C13E46500A42246 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FE6B52C13E46500A42246 /* AuthController.swift */; };
 		6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A42BFBE577008EEA6E /* AppDelegate.swift */; };
 		6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */; };
 		6D2435A92BFBE577008EEA6E /* FirstScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2435A82BFBE577008EEA6E /* FirstScreenController.swift */; };
@@ -24,6 +27,11 @@
 		6D4A2E142C0687A0000125C3 /* StackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E132C0687A0000125C3 /* StackManager.swift */; };
 		6D4A2E162C0687E9000125C3 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E152C0687E9000125C3 /* TimeManager.swift */; };
 		6D4A2E182C068860000125C3 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E172C068860000125C3 /* LoadingIndicator.swift */; };
+		6D4A2E1A2C0689AC000125C3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E192C0689AC000125C3 /* CustomTextField.swift */; };
+		6D4A2E1C2C068B80000125C3 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E1B2C068B80000125C3 /* DesignConstants.swift */; };
+		6D4A2E1E2C068BB8000125C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E1D2C068BB8000125C3 /* Color.swift */; };
+		6D4A2E202C068CB3000125C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A2E1F2C068CB3000125C3 /* CustomButton.swift */; };
+		6D58F7EA2C18CB0100414A33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D58F7E92C18CB0100414A33 /* User.swift */; };
 		6D7C6C7B2C04DB02007AE2AC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C6C7A2C04DB02007AE2AC /* Endpoint.swift */; };
 		6D7C6C7D2C04DB1A007AE2AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C6C7C2C04DB1A007AE2AC /* NetworkManager.swift */; };
 		6D7C6C7F2C04DB37007AE2AC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C6C7E2C04DB37007AE2AC /* Request.swift */; };
@@ -57,6 +65,9 @@
 		5563EBCBE8CCC52B1904C1F9 /* Pods_soloriseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_soloriseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ACF37B33AFC3A4EE759CE21 /* Pods-solorise-soloriseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise-soloriseUITests.release.xcconfig"; path = "Target Support Files/Pods-solorise-soloriseUITests/Pods-solorise-soloriseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61DCAC099809229B5EF5676C /* Pods-soloriseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-soloriseTests.release.xcconfig"; path = "Target Support Files/Pods-soloriseTests/Pods-soloriseTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D0FE6AF2C13DC4100A42246 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		6D0FE6B12C13E28E00A42246 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		6D0FE6B52C13E46500A42246 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		6D2435A12BFBE577008EEA6E /* solorise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = solorise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2435A42BFBE577008EEA6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D2435A62BFBE577008EEA6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +88,11 @@
 		6D4A2E132C0687A0000125C3 /* StackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackManager.swift; sourceTree = "<group>"; };
 		6D4A2E152C0687E9000125C3 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		6D4A2E172C068860000125C3 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		6D4A2E192C0689AC000125C3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6D4A2E1B2C068B80000125C3 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		6D4A2E1D2C068BB8000125C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		6D4A2E1F2C068CB3000125C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		6D58F7E92C18CB0100414A33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D7C6C7A2C04DB02007AE2AC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		6D7C6C7C2C04DB1A007AE2AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6D7C6C7E2C04DB37007AE2AC /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -130,6 +146,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6D0FE6B32C13E36300A42246 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6D0FE6B12C13E28E00A42246 /* WebViewController.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		6D0FE6B42C13E45800A42246 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6D0FE6B52C13E46500A42246 /* AuthController.swift */,
+				6D4A2E082C068597000125C3 /* LoginViewController.swift */,
+				6D4A2E0A2C0685AA000125C3 /* SignupViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		6D2435982BFBE577008EEA6E = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				6D4A2E122C068794000125C3 /* Manager */,
-				6D7C6C792C04D9FF007AE2AC /* New Group */,
+				6D7C6C792C04D9FF007AE2AC /* Component */,
 				6DED032D2C02A2F600F3592F /* Support */,
 				6DED032C2C02A2A600F3592F /* ViewModel */,
 				6D32C1952BFC14B900237B67 /* ApiClient */,
@@ -191,9 +225,9 @@
 		6D32C18F2BFC0F9800237B67 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6D58F7E82C18CAEE00414A33 /* Api */,
 				6D426A5D2C035A8400BFBBFF /* Example.swift */,
-				6D7C6C802C0508CB007AE2AC /* ApiResponse.swift */,
-				6D7C6C822C0508E9007AE2AC /* ApiErrorResponse.swift */,
+				6D58F7E92C18CB0100414A33 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,9 +242,9 @@
 		6D32C1912BFC0FB100237B67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D0FE6B42C13E45800A42246 /* Auth */,
+				6D0FE6B32C13E36300A42246 /* Helper */,
 				6D2435A82BFBE577008EEA6E /* FirstScreenController.swift */,
-				6D4A2E082C068597000125C3 /* LoginViewController.swift */,
-				6D4A2E0A2C0685AA000125C3 /* SignupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,6 +255,7 @@
 				6D4A2E0C2C068740000125C3 /* Anchors.swift */,
 				6D4A2E0E2C068755000125C3 /* CustomCell.swift */,
 				6D4A2E172C068860000125C3 /* LoadingIndicator.swift */,
+				6D4A2E1D2C068BB8000125C3 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,11 +297,23 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		6D7C6C792C04D9FF007AE2AC /* New Group */ = {
+		6D58F7E82C18CAEE00414A33 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				6D7C6C802C0508CB007AE2AC /* ApiResponse.swift */,
+				6D7C6C822C0508E9007AE2AC /* ApiErrorResponse.swift */,
 			);
-			path = "New Group";
+			path = Api;
+			sourceTree = "<group>";
+		};
+		6D7C6C792C04D9FF007AE2AC /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A2E192C0689AC000125C3 /* CustomTextField.swift */,
+				6D4A2E1F2C068CB3000125C3 /* CustomButton.swift */,
+				6D0FE6AF2C13DC4100A42246 /* AuthHeaderView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		6DED032C2C02A2A600F3592F /* ViewModel */ = {
@@ -280,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				6DED032E2C02A30300F3592F /* Constants.swift */,
+				6D4A2E1B2C068B80000125C3 /* DesignConstants.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -499,14 +547,22 @@
 				6D2435A92BFBE577008EEA6E /* FirstScreenController.swift in Sources */,
 				6D2435A52BFBE577008EEA6E /* AppDelegate.swift in Sources */,
 				6D2435A72BFBE577008EEA6E /* SceneDelegate.swift in Sources */,
+				6D58F7EA2C18CB0100414A33 /* User.swift in Sources */,
+				6D0FE6B02C13DC4100A42246 /* AuthHeaderView.swift in Sources */,
 				6DED032F2C02A30300F3592F /* Constants.swift in Sources */,
 				6D7C6C7F2C04DB37007AE2AC /* Request.swift in Sources */,
+				6D4A2E1C2C068B80000125C3 /* DesignConstants.swift in Sources */,
 				6D7C6C7B2C04DB02007AE2AC /* Endpoint.swift in Sources */,
 				6D4A2E162C0687E9000125C3 /* TimeManager.swift in Sources */,
 				6D4A2E0B2C0685AA000125C3 /* SignupViewController.swift in Sources */,
+				6D4A2E1A2C0689AC000125C3 /* CustomTextField.swift in Sources */,
 				6D7C6C812C0508CB007AE2AC /* ApiResponse.swift in Sources */,
+				6D4A2E202C068CB3000125C3 /* CustomButton.swift in Sources */,
+				6D0FE6B62C13E46500A42246 /* AuthController.swift in Sources */,
 				6D7C6C7D2C04DB1A007AE2AC /* NetworkManager.swift in Sources */,
+				6D0FE6B22C13E28E00A42246 /* WebViewController.swift in Sources */,
 				6D7C6C832C0508E9007AE2AC /* ApiErrorResponse.swift in Sources */,
+				6D4A2E1E2C068BB8000125C3 /* Color.swift in Sources */,
 				6D426A5E2C035A8400BFBBFF /* Example.swift in Sources */,
 				6D4A2E092C068597000125C3 /* LoginViewController.swift in Sources */,
 				6D4A2E0F2C068755000125C3 /* CustomCell.swift in Sources */,
