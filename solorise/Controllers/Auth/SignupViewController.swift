@@ -253,7 +253,11 @@ class SignupViewController : UIViewController{
                 
                 
                 
-                    print(user_data)
+                    DispatchQueue.main.async {
+                        AuthManager.setUserDefaults(user: user_data)
+                        strongSelf.dismiss(animated: true)
+                        
+                    }
                  
                     //Check verification of the user
 //                    let verifed   =  user_data.verified

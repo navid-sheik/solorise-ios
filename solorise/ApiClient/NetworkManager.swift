@@ -51,6 +51,12 @@ final class NetworkManager{
             print(error)
             print (httpResponse.statusCode)
             //Ensure response code is correct
+            
+            if httpResponse.statusCode == 401 {
+                 completion(.failure(NetworkError.unAuthorized))
+                 return
+            }
+
             guard (200...299).contains(httpResponse.statusCode) else{
                 do{
                     let errorResponse =  try JSONDecoder().decode(ApiErrorResponse.self, from: data)

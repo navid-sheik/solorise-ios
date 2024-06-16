@@ -256,8 +256,11 @@ class LoginViewController : UIViewController{
                 
                 //Check verification of the user
                 let verifed   =  user_data.verified
+                
+                
                 DispatchQueue.main.async {
-                    strongSelf.navigationController?.pushViewController(FirstScreenController(), animated: true)
+                    AuthManager.setUserDefaults(user: user_data)
+                    strongSelf.dismiss(animated: true)
                     
                 }
                 //Show verified controller if not verifed

@@ -38,37 +38,40 @@ class FirstScreenController: UIViewController {
         testButton.addTarget(self, action: #selector(handleTestAuth), for: .touchUpInside)
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemMint
         
         self.setUpViews()
         
+        print(AuthManager.getUser())
         
         
-    
+        
         
         // Do any additional setup after loading the view.
-//        NetworkManager.shared.test(expecting: ApiResponse<String>.self) { [weak self] result in
-//            guard let self = self else {return}
-//            switch result{
-//            case .success(let result):
-//                print(result)
-//            case .failure(let error):
-//                print("The error is")
-//                print(error)
-//            }
-//            
-//        }
+        //        NetworkManager.shared.test(expecting: ApiResponse<String>.self) { [weak self] result in
+        //            guard let self = self else {return}
+        //            switch result{
+        //            case .success(let result):
+        //                print(result)
+        //            case .failure(let error):
+        //                print("The error is")
+        //                print(error)
+        //            }
+        //
+        //        }
     }
     
     @objc func handleLogout (){
+        AuthManager.clearUserDefaults()
         NetworkManager.shared.logout(expecting:  ApiResponse<EmptyResponse>.self) { [weak self] result in
             switch (result){
                 
                 
             case .success(_):
+                
                 print ("Successfully logout ")
             case .failure(_):
                 print("Failed to logout")
@@ -82,12 +85,36 @@ class FirstScreenController: UIViewController {
                 
             case .success(_):
                 print("By passed the middleware auth")
-            case .failure(_):
-                print ("Some error with this shit")
+            case .failure(let error as NetworkError):
+                
+                switch error{
+                    
+                case .failedToCreateRequest:
+                    print("")
+                case .failedToFetchData:
+                    print("")
+                case .failedToDecode:
+                    print("")
+                case .unAuthorized:
+                    DispatchQueue.main.async {
+                        let vc  =  UINavigationController(rootViewController: AuthViewContoller())
+                        self?.present(vc, animated: true)
+                        print("")
+                    }
+                   
+                case .customError(code: let code, message: let message):
+                    print("")
+                case .invalidReponse:
+                    print("")
+                    
+                }
+                
+                
+                
+                
+            default:
+                print("Default")
             }
         }
-            }
-
-
+    }
 }
-
