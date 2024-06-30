@@ -36,11 +36,14 @@ class TabController :  UITabBarController{
     
     private func setUpTabs() {
         let homeVC = ProfileController()
-        let likesVC = FirstScreenController()
+        let likesVC = MyPageControllerViewController()
         let cartVC = FirstScreenController()
 //        cartVC.delegate = self
-        let profileVC =  ProfileController()
+        
         let layout  = UICollectionViewFlowLayout()
+        let profileVC =  GrindCalendarViewController(collectionViewLayout: layout)
+      
+        
         
        
         
