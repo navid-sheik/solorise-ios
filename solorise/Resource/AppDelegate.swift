@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  solorise
+//  soloriseo
 //
 //  Created by Navid Sheikh on 20/05/2024.
 //

@@ -38,6 +38,7 @@ class TabController :  UITabBarController{
         let homeVC = ProfileController()
         let likesVC = MyPageControllerViewController()
         let cartVC = FirstScreenController()
+        let lastVC = SecondViewController()
 //        cartVC.delegate = self
         
         let layout  = UICollectionViewFlowLayout()
@@ -56,6 +57,7 @@ class TabController :  UITabBarController{
 //        becomeSellerVC.navigationItem.largeTitleDisplayMode = .automatic
         profileVC.navigationItem.largeTitleDisplayMode = .automatic
         cartVC.navigationItem.largeTitleDisplayMode = .automatic
+        lastVC.navigationItem.largeTitleDisplayMode = .automatic
         
         
 //        var nav3 = UINavigationController(rootViewController: becomeSellerVC)
@@ -71,6 +73,7 @@ class TabController :  UITabBarController{
        
         let nav4 = UINavigationController(rootViewController: profileVC)
         let nav5 = UINavigationController(rootViewController: cartVC)
+        let nav6 = UINavigationController(rootViewController: lastVC)
         
         nav1.tabBarItem = UITabBarItem(title: "Home",
                                        image: UIImage(systemName: "house"),
@@ -94,13 +97,19 @@ class TabController :  UITabBarController{
         nav5.tabBarItem.badgeValue = "0"
         
         
+        nav6.tabBarItem = UITabBarItem(title: "Car",
+                                       image: UIImage(systemName: "car"),
+                                       tag: 5)
         
-        for nav in [nav1, nav2, nav4, nav5] {
+        
+        
+        
+        for nav in [nav1, nav2, nav4, nav5, nav6] {
             nav.navigationBar.prefersLargeTitles = false
         }
         
         setViewControllers(
-            [nav1, nav2, nav4, nav5],
+            [nav1, nav2, nav4, nav5, nav6],
             animated: true
         )
     }
