@@ -53,6 +53,7 @@
 		6DC841C02C2F84FC0030F4B7 /* MyPageControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC841BF2C2F84FC0030F4B7 /* MyPageControllerViewController.swift */; };
 		6DCC0E2A2C1F71EE000DD271 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC0E292C1F71EE000DD271 /* CustomImage.swift */; };
 		6DED032F2C02A30300F3592F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED032E2C02A30300F3592F /* Constants.swift */; };
+		6DF95A4F2C5C2BD20047FED1 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF95A4E2C5C2BD20047FED1 /* PreviewViewController.swift */; };
 		CB92D56C626D4F302C185948 /* Pods_soloriseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5563EBCBE8CCC52B1904C1F9 /* Pods_soloriseTests.framework */; };
 		E406022E0DC0E5D1592AD2BE /* Pods_solorise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F680D5DBD07A748DABEE0756 /* Pods_solorise.framework */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,7 @@
 		6DC841BF2C2F84FC0030F4B7 /* MyPageControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageControllerViewController.swift; sourceTree = "<group>"; };
 		6DCC0E292C1F71EE000DD271 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		6DED032E2C02A30300F3592F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6DF95A4E2C5C2BD20047FED1 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		7864D47C0D2A11049B8F8877 /* Pods-solorise-soloriseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise-soloriseUITests.debug.xcconfig"; path = "Target Support Files/Pods-solorise-soloriseUITests/Pods-solorise-soloriseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A0F07006FE9B8D49B38F1604 /* Pods-solorise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-solorise.release.xcconfig"; path = "Target Support Files/Pods-solorise/Pods-solorise.release.xcconfig"; sourceTree = "<group>"; };
 		C07844C20C51B3BAB08A0078 /* Pods-soloriseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-soloriseTests.debug.xcconfig"; path = "Target Support Files/Pods-soloriseTests/Pods-soloriseTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		6D32C1912BFC0FB100237B67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6DF95A4D2C5C2BB50047FED1 /* Editor */,
 				6D0AAACA2C3179A600581443 /* New Group */,
 				6D2F40B52C302595000D705D /* Profile */,
 				6DB5A74B2C1E4E8E007D7A04 /* Tab */,
@@ -415,6 +418,14 @@
 				6D4A2E1B2C068B80000125C3 /* DesignConstants.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		6DF95A4D2C5C2BB50047FED1 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				6DF95A4E2C5C2BD20047FED1 /* PreviewViewController.swift */,
+			);
+			path = Editor;
 			sourceTree = "<group>";
 		};
 		9AEE0E5A0C85BBE47376818B /* Frameworks */ = {
@@ -637,6 +648,7 @@
 				6D58F7EA2C18CB0100414A33 /* User.swift in Sources */,
 				6DCC0E2A2C1F71EE000DD271 /* CustomImage.swift in Sources */,
 				6D0FE6B02C13DC4100A42246 /* AuthHeaderView.swift in Sources */,
+				6DF95A4F2C5C2BD20047FED1 /* PreviewViewController.swift in Sources */,
 				6DC408D72C5AE9B8009A67C5 /* SecondViewController.swift in Sources */,
 				6DED032F2C02A30300F3592F /* Constants.swift in Sources */,
 				6D7C6C7F2C04DB37007AE2AC /* Request.swift in Sources */,
