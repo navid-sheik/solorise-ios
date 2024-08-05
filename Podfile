@@ -6,6 +6,7 @@ target 'solorise' do
   use_frameworks!
 
   # Pods for solorise
+  
 
   target 'soloriseTests' do
     inherit! :search_paths

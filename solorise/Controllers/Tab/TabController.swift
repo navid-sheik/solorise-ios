@@ -13,6 +13,7 @@ class TabController :  UITabBarController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self // Set the delegate
         self.setUpStyle()
         self.setUpTabs()
     }
@@ -37,7 +38,7 @@ class TabController :  UITabBarController{
     private func setUpTabs() {
         let homeVC = ProfileController()
         let likesVC = MyPageControllerViewController()
-        let cartVC = FirstScreenController()
+        let cartVC = MainEditorViewController()
         let lastVC = SecondViewController()
 //        cartVC.delegate = self
         
@@ -118,4 +119,18 @@ class TabController :  UITabBarController{
     
     
     
+}
+
+extension TabController : UITabBarControllerDelegate{
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+           if let navController = viewController as? UINavigationController,
+              navController.viewControllers.first is MainEditorViewController {
+               
+               let viewControllerToPresent = UINavigationController(rootViewController : MainEditorViewController()) // Replace with your actual view controller initialization
+               viewControllerToPresent.modalPresentationStyle =  .fullScreen
+               self.present(viewControllerToPresent, animated: true, completion: nil)
+               return false
+           }
+           return true
+       }
 }
