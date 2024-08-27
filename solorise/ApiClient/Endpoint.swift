@@ -11,5 +11,6 @@ enum Endpoint : String{
     case base  = ""
     case auth
     case test
-    
+    case post
+    case upload
 }

@@ -4,7 +4,6 @@
 //
 //  Created by Navid Sheikh on 31/07/2024.
 //
-
 import UIKit
 import AVFoundation
 import AVKit
@@ -12,6 +11,8 @@ import MobileCoreServices
 import Photos
 
 class SecondViewController: UIViewController {
+    
+    weak var previewViewDelegate: PreviewViewControllerDelegate?
     
     // Capture session
     var session: AVCaptureSession?
@@ -31,10 +32,6 @@ class SecondViewController: UIViewController {
     
     var activeInput: AVCaptureDeviceInput!
     var outputURL: URL!
-    
-    
-    
-    
     
     let shutterButton: UIButton = {
         let button = UIButton()
@@ -60,12 +57,12 @@ class SecondViewController: UIViewController {
         return imageView
     }()
     
-    
     var imageData: UIImage? {
         didSet {
             if let image = imageData {
                 let photoEditorVC = PreviewViewController()
                 photoEditorVC.image = image
+                photoEditorVC.delegate = previewViewDelegate  // Setting the delegate here
                 navigationController?.pushViewController(photoEditorVC, animated: true)
             }
         }
@@ -76,6 +73,7 @@ class SecondViewController: UIViewController {
             if let videoURL = videoData {
                 let videoPreviewVC = PreviewViewController()
                 videoPreviewVC.videoURL = videoURL
+                videoPreviewVC.delegate =  previewViewDelegate  // Setting the delegate here
                 navigationController?.pushViewController(videoPreviewVC, animated: true)
             }
         }
@@ -84,6 +82,7 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         view.backgroundColor = .black
         view.layer.addSublayer(previewLayer)
         view.addSubview(shutterButton)
@@ -98,6 +97,21 @@ class SecondViewController: UIViewController {
         longPressRecognizer.minimumPressDuration = 1 // Adjust as needed
         longPressRecognizer.delegate = self
         shutterButton.addGestureRecognizer(longPressRecognizer)
+        
+        setupCustomBackButton()
+    }
+    
+    func setupCustomBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backBarButtonItem
+    }
+    
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setUpConstraints() {
@@ -192,21 +206,17 @@ class SecondViewController: UIViewController {
         }
     }
     
-    
     @objc private func handleGalleryPreviewTap() {
-        
-        let imagePickerController =  UIImagePickerController()
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.mediaTypes = ["public.image", "public.movie"]
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    
     private func startRecording() {
         guard let session = session, session.isRunning, !isRecording else { return }
         
-        // Get a unique temporary file URL
         let outputPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(UUID().uuidString + ".mov")
         let outputFileURL = URL(fileURLWithPath: outputPath)
         
@@ -219,16 +229,10 @@ class SecondViewController: UIViewController {
         videoOutput.stopRecording()
         isRecording = false
     }
-    
-    private func takePhoto() {
-        let photoSettings = AVCapturePhotoSettings()
-        output.capturePhoto(with: photoSettings, delegate: self)
-    }
 }
 
-
 extension SecondViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             imageData = selectedImage
         } else if let mediaURL = info[.mediaURL] as? URL {
@@ -240,24 +244,6 @@ extension SecondViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
-//    private func generateThumbnail(for url: URL, completion: @escaping (UIImage?) -> Void) {
-//        DispatchQueue.global().async {
-//            let asset = AVAsset(url: url)
-//            let assetImageGenerator = AVAssetImageGenerator(asset: asset)
-//            assetImageGenerator.appliesPreferredTrackTransform = true
-//            let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 600)
-//            var actualTime = CMTime.zero
-//            do {
-//                let cgImage = try assetImageGenerator.copyCGImage(at: time, actualTime: &actualTime)
-//                let image = UIImage(cgImage: cgImage)
-//                completion(image)
-//            } catch {
-//                print(error.localizedDescription)
-//                completion(nil)
-//            }
-//        }
-//    }
 }
 
 extension SecondViewController: AVCapturePhotoCaptureDelegate {
@@ -265,11 +251,11 @@ extension SecondViewController: AVCapturePhotoCaptureDelegate {
         guard let data = photo.fileDataRepresentation() else { return }
         session?.stopRunning()
         
-        let controller = PreviewViewController()
-        DispatchQueue.main.async {
-            if let image = UIImage(data: data) {
-                let photoEditorVC = PreviewViewController()
-                photoEditorVC.image = image
+        if let image = UIImage(data: data) {
+            let photoEditorVC = PreviewViewController()
+            photoEditorVC.image = image
+            photoEditorVC.delegate = previewViewDelegate  // Setting the delegate here
+            DispatchQueue.main.async {
                 self.navigationController?.pushViewController(photoEditorVC, animated: true)
             }
         }
@@ -277,22 +263,17 @@ extension SecondViewController: AVCapturePhotoCaptureDelegate {
 }
 
 extension SecondViewController: AVCaptureFileOutputRecordingDelegate {
-    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
-        print("Started recording to: \(fileURL)")
-    }
-    
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         print("Finished recording to: \(outputFileURL)")
         session?.stopRunning()
         if let error = error {
             print("Error recording movie: \(error.localizedDescription)")
         } else {
-            let controller = PreviewViewController()
-            controller.videoURL = outputFileURL
-            print(outputFileURL)
-            print("pushing the controller")
+            let videoPreviewVC = PreviewViewController()
+            videoPreviewVC.videoURL = outputFileURL
+            videoPreviewVC.delegate = previewViewDelegate  // Setting the delegate here
             DispatchQueue.main.async {
-                self.navigationController?.pushViewController(controller, animated: true)
+                self.navigationController?.pushViewController(videoPreviewVC, animated: true)
             }
         }
     }

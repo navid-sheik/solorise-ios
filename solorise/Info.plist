@@ -6,6 +6,8 @@
 	<string>Please alow to recorrd audio</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow to take photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow to access your album</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

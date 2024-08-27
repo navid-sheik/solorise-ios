@@ -39,7 +39,7 @@ class TabController :  UITabBarController{
         let homeVC = ProfileController()
         let likesVC = MyPageControllerViewController()
         let cartVC = MainEditorViewController()
-        let lastVC = SecondViewController()
+        let lastVC = FirstScreenController()
 //        cartVC.delegate = self
         
         let layout  = UICollectionViewFlowLayout()

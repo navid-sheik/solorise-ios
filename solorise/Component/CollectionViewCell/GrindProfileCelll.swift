@@ -11,6 +11,22 @@ import UIKit
 class GrindProfileCelll:  CustomCell{
     
     
+    var post: Post? {
+        didSet {
+            if let imageUrlString = post?.image, let url = URL(string: imageUrlString) {
+                // Asynchronously download the image data
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let data = data {
+                        DispatchQueue.main.async { // Make sure you're on the main thread when setting the image
+                            self.mainImage.image = UIImage(data: data)
+                        }
+                    }
+                }.resume()
+            }
+        }
+    }
+
+    
     
     let mainImage : CustomImageView  = {
         let imageView  = CustomImageView()

@@ -22,6 +22,8 @@ enum MenuOption: String, CaseIterable {
 class MyPageControllerViewController: UIViewController{
     var pages = [UIViewController]()
     
+    let posts =  [Post]()
+    
     
     
     let mainImage : CustomImageView  = {

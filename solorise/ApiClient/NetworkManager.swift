@@ -229,3 +229,101 @@ extension NetworkManager{
     
     
 }
+
+
+
+extension NetworkManager{
+    
+    /// Method to sign out and clear cookies
+    public func getAllPost<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        // Optionally, you can make a network request to inform the server about the sign-out
+        //Use the url request builder
+        let request  =  Request(endpoint: .post, pathComponents: ["all"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    public func getAllImages<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        // Optionally, you can make a network request to inform the server about the sign-out
+        //Use the url request builder
+        let request  =  Request(endpoint: .upload, pathComponents: ["all"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+
+
+    public func createPost<T: Codable>(_ postData: [String: Any], expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+        let boundary = "Boundary-\(UUID().uuidString)"
+        
+        var body = Data()
+        
+        // Iterate over the postData dictionary
+        for (key, value) in postData {
+            if let imageData = value as? Data {
+                // Append image data with the key "file"
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"file\"; filename=\"image.jpg\"\r\n")
+                body.append("Content-Type: image/jpeg\r\n\r\n")
+                body.append(imageData)
+                body.append("\r\n")
+            } else if let stringValue = value as? String {
+                // Append string data (e.g., "content", "category")
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.append("\(stringValue)\r\n")
+            }
+        }
+        
+        // End the form data with the boundary
+        body.append("--\(boundary)--\r\n")
+        
+        // Build the request with multipart/form-data
+        var request = Request(endpoint: .post, pathComponents: ["create"])
+            .add(headerField: "Content-Type", value: "multipart/form-data; boundary=\(boundary)")
+            .set(method: .POST)
+            .build()
+        
+        // Safely unwrap the request
+        guard var safeRequest = request else {
+            completion(.failure(NSError(domain: "RequestError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to build request."])))
+            return
+        }
+        
+        // Set the body of the request
+        safeRequest.httpBody = body
+        
+        // Execute the network request
+        NetworkManager.shared.execute(safeRequest, expecting: T.self) { [weak self] result in
+            guard self != nil else { return }
+            completion(result)
+        }
+    }
+
+   
+    
+}
+// Helper method to append strings to Data
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}

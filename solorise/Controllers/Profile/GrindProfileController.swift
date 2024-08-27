@@ -12,64 +12,7 @@ class GrindProfileController: UIViewController {
     
     var categories  =  ["One", "Two",  "three", "Four",  "Five", "One", "Two",  "three", "Four",  "Fivesomethingis"]
     
-    let sections  =  [
-        [
-            
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-            Post(text: "This is something", category: "some1"),
-
-            
-                
-        ],
-        [
-            
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            
-                
-        ],
-        
-        [
-            
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            
-                
-        ],
-        
-        [
-            
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            Post(text: "This is something", category: "some2"),
-            
-                
-        ],
-
-    
-    ]
+    var sections  =  [[Post]]()
     
     let identifierGriendCell =  "identifirGrindCell"
     
@@ -108,6 +51,8 @@ class GrindProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpCollectionView()
+        self.fetchPopularSearches()
+        self.fecthAllImage()
         view.addSubview(profileActivitiesCollection)
         view.addSubview(collectionView)
         
@@ -124,6 +69,56 @@ class GrindProfileController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func fecthAllImage(){
+        
+        print("Print popualar  images ")
+        
+        NetworkManager.shared.getAllImages(expecting: ImagesResponse.self) { [weak self]  result in
+            guard let self  = self else {return}
+            switch result {
+                
+            case .success(let response):
+                
+                print(response)
+            case .failure(_):
+                print("Error fetching")
+            }
+            
+        }
+    }
+    func fetchPopularSearches (){
+        print("Print popualar searches ")
+        
+        NetworkManager.shared.getAllPost(expecting: ApiResponse<[Post]>.self) { [weak self]  result in
+            guard let self  = self else {return}
+                   switch result {
+       
+                   case .success(let response):
+                       guard let posts  = response.data else {return}
+                       self.sections.append( posts)
+                       DispatchQueue.main.async {
+                           self.collectionView.reloadData()
+                       }
+                   case .failure(_):
+                       print("Error fetching")
+                   }
+        }
+//        Service.shared.getPopularSearches(expecting: ApiResponse<[SearchQuery]>.self) { [weak self]  result in
+//            guard let self  = self else {return}
+//            switch result {
+//                
+//            case .success(let response):
+//                guard let searchqueries  = response.data else {return}
+//                self.popularSearches = searchqueries
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+//            case .failure(_):
+//                print("Error fetching")
+//            }
+//        }
+        
+    }
   
     
     
@@ -333,6 +328,7 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
         
       
             let cell  =  collectionView.dequeueReusableCell(withReuseIdentifier: identifierGriendCell, for: indexPath) as! GrindProfileCelll
+            cell.post = sections[indexPath.section][indexPath.row]
 //            cell.mainImage.image =  UIImage(named: "template2")
             return cell
 //        }else if   indexPath.section == 1{
