@@ -327,3 +327,147 @@ extension Data {
         }
     }
 }
+
+//Journey
+extension NetworkManager {
+    
+    
+
+    public func getAllJourneys<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .journey, pathComponents: ["all"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    
+    public func getAllJourneysGroupedByCategory<T: Codable>(expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+
+        // Create a request for grouped journeys by category
+        let request = Request(endpoint: .journey, pathComponents: ["grouped"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        // Execute the network request
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+    }
+
+    
+    public func createJourney <T:Codable> (_ journeyData :  CreateJourneyRequest, expecting type : T.Type, completion : @escaping (Result <T, Error>)->Void ){
+        
+        // Convert CreateJourneyRequest to a dictionary
+         let journeyDict = journeyData.toDictionary()
+        
+        
+        let jsonData  =  try? JSONSerialization.data(withJSONObject: journeyDict)
+        
+        //Use the url request builder
+        let request  =  Request(endpoint: .journey, pathComponents: ["create"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(body: jsonData)
+            .set(method: .POST)
+            .build()
+        
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+        
+    }
+    
+    
+    public func getJourneyById <T:Codable>(journeyId : String,  expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .journey, pathComponents: [journeyId])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    public func getAllJourneysByUser <T:Codable>(userId : String,  expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .journey, pathComponents: ["user" , userId])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+    
+    public func updateJourney <T:Codable>(journeyId : String,  expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .journey, pathComponents: [journeyId])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .PUT)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result) 
+        }
+       
+    }
+    public func deleteJourney <T:Codable>(journeyId : String,  expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .journey, pathComponents: [journeyId])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .DELETE)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+       
+    }
+
+
+    
+    
+    
+}
+//Category
+extension NetworkManager {
+    
+    
+    
+    public func getAllCategory<T:Codable>(expecting type : T.Type,  completion : @escaping (Result <T, Error>) -> Void){
+        
+        let request  =  Request(endpoint: .category, pathComponents: ["all"])
+            .add(headerField: "Content-Type", value: "application/json")
+            .set(method: .GET)
+            .build()
+        
+        NetworkManager.shared.execute(request, expecting: T.self) { [weak self] result in
+            guard let _ = self else { return }
+            completion(result)
+        }
+        
+    }
+    
+    
+}
+
+

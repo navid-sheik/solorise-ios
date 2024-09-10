@@ -8,6 +8,10 @@ class Dropdown: NSObject, UITableViewDelegate, UITableViewDataSource {
     private var dataSource = [String]()
     private var selectedButton = UIButton()
     
+    // Add this property to handle the selection
+    var didSelectItem: ((Int) -> Void)?
+
+    
     override init() {
         super.init()
         setupTransparentView()
@@ -46,6 +50,13 @@ class Dropdown: NSObject, UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
     }
     
+    // New method to update the data source without showing the dropdown
+      func updateDataSource(with data: [String]) {
+          dataSource = data
+          tableView.reloadData()  // Reload the table view with the new data
+      }
+      
+    
     @objc private func removeTransparentView() {
         UIView.animate(withDuration: 0.4, animations: {
             self.transparentView.alpha = 0
@@ -68,6 +79,7 @@ class Dropdown: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedButton.setTitle(dataSource[indexPath.row], for: .normal)
+        didSelectItem?(indexPath.row)
         removeTransparentView()
     }
 }

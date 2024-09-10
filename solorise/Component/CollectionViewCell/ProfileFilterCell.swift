@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ProfileFilterCell :  CustomCell{
+class CategoryFilterCell :  CustomCell{
     
     var tagName :  UILabel = {
         let label = UILabel ()

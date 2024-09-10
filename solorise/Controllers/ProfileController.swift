@@ -38,6 +38,14 @@ class ProfileController : UIViewController{
         return imageView
     }()
     
+    let addNewJourneyButton :  UIButton = {
+        let button  =  UIButton(type: .system)
+        
+        button.setImage(UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .gray
+        return  button
+    }()
+    
     let bio: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -117,6 +125,7 @@ class ProfileController : UIViewController{
     //MARK: LAYOUT
     private func setUpLayout (){
         view.addSubview(mainImage)
+        view.addSubview(addNewJourneyButton)
         view.addSubview(bio)
         view.addSubview(profileActivitiesCollection)
         view.addSubview(scrollableCollectionView)
@@ -125,6 +134,9 @@ class ProfileController : UIViewController{
         mainImage.widthAnchor.constraint(equalToConstant: self.view.frame.width / 3).isActive = true
         mainImage.heightAnchor.constraint(equalToConstant: self.view.frame.width / 3).isActive = true
         
+        addNewJourneyButton.backgroundColor = .systemOrange
+        addNewJourneyButton.anchor( top: self.view.safeAreaLayoutGuide.topAnchor, left: nil, right: self.view.trailingAnchor, bottom: nil, paddingTop: 10, paddingLeft: 0,paddingRight: -10, paddingBottom: 0, width: 50, height: 50)
+        addNewJourneyButton.addTarget(self, action: #selector(handleTapCreateJourney) , for: .touchUpInside)
         
         bio.anchor( top: self.mainImage.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 10, paddingLeft: 10,paddingRight: -10, paddingBottom: 0, width: nil, height: 50)
     
@@ -150,6 +162,12 @@ class ProfileController : UIViewController{
     }
     
     //MARK: ACTIONS
+    
+    @objc private func handleTapCreateJourney() {
+        let controller =  CreateJourneyViewController()
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
     
     

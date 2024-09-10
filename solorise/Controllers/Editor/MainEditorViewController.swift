@@ -11,6 +11,15 @@ import UIKit
 
 class MainEditorViewController  : UIViewController {
     
+    private let categoryService = CategoryService.shared
+    private var selectedCategoryID: String?
+    
+    private var journeyGrouped = [UserJourneysGroupedByCategory]()
+    
+    
+    private var selectedJourneyID  :  String?
+    
+    
     
     
     let mainImage : CustomImageView  = {
@@ -87,8 +96,8 @@ class MainEditorViewController  : UIViewController {
         return textView
     }()
     
-    private let dropdown = Dropdown()
-    private let btnSelectFruit : UIButton={
+    private let categoryDropDown = Dropdown()
+    private let categorySelect : UIButton={
         let button  =  UIButton(type: .system)
         button.titleLabel?.textAlignment = .left
         //        button.backgroundColor  = .darkGray
@@ -98,8 +107,8 @@ class MainEditorViewController  : UIViewController {
         return button
     }()
     
-    private let dropdown2 = Dropdown()
-    private let btnSelectFruit2 : UIButton={
+    private let journeyDropDown = Dropdown()
+    private let jouneySelect : UIButton={
         let button  =  UIButton(type: .system)
         button.titleLabel?.textAlignment = .left
         //        button.backgroundColor  = .darkGray
@@ -150,8 +159,30 @@ class MainEditorViewController  : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor =  .systemBackground
+        fetchJourneyByCategory()
 //        self.postTextView.delegate = self
         // Add tap gesture to dismiss keyboard
+        // Handle category fetch success
+        categoryService.onCategoriesFetched = { [weak self] in
+            guard let strongSelf = self else { return }
+            // Fetch the category names from the service
+            let categoryNames = CategoryService.shared.categories.map { $0.name }
+            
+            // Update the dropdown's data source with the new category names
+            strongSelf.categoryDropDown.updateDataSource(with: categoryNames)
+        }
+        
+        // Handle errors
+        categoryService.onError = { [weak self] errorMessage in
+            guard let strongSelf = self else { return }
+            
+            let categoryNames = ["Error,please reload"]
+//            self?.showErrorAlert(message: errorMessage)
+            
+            strongSelf.categoryDropDown.updateDataSource(with: categoryNames)
+        }
+        
+        
        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
        view.addGestureRecognizer(tapGesture)
         setNavigationBar()
@@ -165,6 +196,19 @@ class MainEditorViewController  : UIViewController {
         
     }
     
+    
+    func fetchJourneyByCategory() {
+        NetworkManager.shared.getAllJourneysGroupedByCategory( expecting: ApiResponse<[UserJourneysGroupedByCategory]>.self) { [weak self] result in
+            switch result {
+            case .success(let response):
+                guard let journeys = response.data else { return }
+                self?.journeyGrouped  = journeys
+               
+            case .failure(let error):
+               print("Error oeading grouped journeys")
+            }
+        }
+    }
     
   
     
@@ -191,7 +235,7 @@ class MainEditorViewController  : UIViewController {
                 view.addSubview(mainImage)
                 
                 // Anchor mainImage to the top right corner
-                mainImage.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 10, paddingRight: -5, width: self.view.frame.width / 5, height: self.view.frame.height / 6)
+                mainImage.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 10, paddingRight: -5, width: self.view.frame.width / 4, height: self.view.frame.height / 6)
                 
                 // Add deleteButton inside mainImage
                 mainImage.addSubview(deleteMediaButton)
@@ -233,25 +277,72 @@ class MainEditorViewController  : UIViewController {
         buttonStackView.anchor(top: toolBarStackView.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 5, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: nil, height: nil)
         buttonStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        view.addSubview(btnSelectFruit)
-        btnSelectFruit.addTarget(self, action: #selector(onClickSelectFruit(_:)), for: .touchUpInside)
-        btnSelectFruit.anchor(top: buttonStackView.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 0, paddingLeft: 5, paddingRight: -5, paddingBottom: 0, width: nil, height: 50)
+        view.addSubview(categorySelect)
+        categorySelect.addTarget(self, action: #selector(onClickSelectCategory(_:)), for: .touchUpInside)
+        categorySelect.anchor(top: buttonStackView.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 0, paddingLeft: 5, paddingRight: -5, paddingBottom: 0, width: nil, height: 50)
         
-        view.addSubview(btnSelectFruit2)
-        btnSelectFruit2.addTarget(self, action: #selector(onClickSelectFruit2(_:)), for: .touchUpInside)
-        btnSelectFruit2.anchor(top: btnSelectFruit.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 0, paddingLeft: 5, paddingRight: 5, paddingBottom: 0, width: nil, height: 50)
+        view.addSubview(jouneySelect)
+        jouneySelect.addTarget(self, action: #selector(onClickJourneySelect(_:)), for: .touchUpInside)
+        jouneySelect.anchor(top: categorySelect.bottomAnchor, left: self.view.leadingAnchor, right: self.view.trailingAnchor, bottom: nil, paddingTop: 0, paddingLeft: 5, paddingRight: 5, paddingBottom: 0, width: nil, height: 50)
     }
 
     
     
     
-    @objc func onClickSelectFruit(_ sender: UIButton) {
-        dropdown.showDropdown(on: sender, with: ["Apple", "Mango", "Orange"])
+    @objc func onClickSelectCategory(_ sender: UIButton) {
+        // Get the categories
+        let categories = CategoryService.shared.categories
+
+        // Prepare an array of category names
+        let categoryNames = categories.map { $0.name }
+
+        // Show the dropdown with category names
+        categoryDropDown.showDropdown(on: sender, with: categoryNames)
+
+        // Set up the category selection logic
+        categoryDropDown.didSelectItem = { [weak self] selectedIndex in
+            // Get the selected category's ID and name
+            let selectedCategory = categories[selectedIndex]
+            self?.categorySelect.setTitle(selectedCategory.name, for: .normal)
+            self?.selectedCategoryID = selectedCategory.id // Save the category ID
+        }
     }
     
     
-    @objc func onClickSelectFruit2(_ sender: UIButton) {
-        dropdown2.showDropdown(on: sender, with: ["Apple", "Mango", "Orange"])
+    @objc func onClickJourneySelect(_ sender: UIButton) {
+        // Ensure a category has been selected before showing journeys
+           guard let selectedCategoryID = self.selectedCategoryID else {
+               journeyDropDown.showDropdown(on: sender, with: ["Please select a category"])
+               return
+           }
+           
+           // Find the selected category from journeyGrouped using the category ID
+           guard let selectedCategory = journeyGrouped.first(where: { $0.id == selectedCategoryID }) else {
+               journeyDropDown.showDropdown(on: sender, with: ["No record found"])
+               print("Selected category not found")
+               return
+           }
+        
+        // Get the journey titles from the selected category
+           let journeyTitles = selectedCategory.journeys.map { $0.title }
+
+           // Show the dropdown with journey titles
+           journeyDropDown.showDropdown(on: sender, with: journeyTitles)
+        
+        
+            // Set up the journey selection logic
+           journeyDropDown.didSelectItem = { [weak self] selectedIndex in
+               // Get the selected journey
+               let selectedJourney = selectedCategory.journeys[selectedIndex]
+               
+               // Update the journeySelect button's title with the selected journey title
+               self?.jouneySelect.setTitle(selectedJourney.title, for: .normal)
+               
+               // Optionally, store the selected journey ID or perform further actions
+               print("Selected Journey ID: \(selectedJourney.id)")
+               self?.selectedJourneyID = selectedJourney.id
+           }
+
     }
     
     
@@ -267,14 +358,22 @@ class MainEditorViewController  : UIViewController {
         }
         
         // Ensure a category is selected
-        guard let category = btnSelectFruit.title(for: .normal), category != "Category" else {
+        guard let category = categorySelect.title(for: .normal), category != "Category" else {
             print("Please select a category")
+            return
+        }
+        
+        //Ensure the journey is selected
+        
+        guard let journeyID = selectedJourneyID  else  {
+            print("Please select a journey")
             return
         }
         
         // Prepare the data to be sent in the POST request
         var postData: [String: Any] = [
             "content": content,
+            "journey" : journeyID,
             "category": category
         ]
         

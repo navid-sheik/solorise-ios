@@ -10,9 +10,9 @@ import UIKit
 
 class GrindProfileController: UIViewController {
     
-    var categories  =  ["One", "Two",  "three", "Four",  "Five", "One", "Two",  "three", "Four",  "Fivesomethingis"]
+    private let categoryService = CategoryService.shared
     
-    var sections  =  [[Post]]()
+    var sections  =  [PostGroupedByJourney]()
     
     let identifierGriendCell =  "identifirGrindCell"
     
@@ -25,10 +25,16 @@ class GrindProfileController: UIViewController {
     let collectionView : UICollectionView = {
         let cv  =  UICollectionView(frame: .zero, collectionViewLayout: GrindProfileController.createLayout())
         cv.backgroundColor  = .white
+        
+        // Create and configure the refresh control
+          let refreshControl = UIRefreshControl()
+          refreshControl.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+          cv.refreshControl = refreshControl
+
         return cv
     }()
     
-    let profileActivitiesCollection : UICollectionView = {
+    let categoriesCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
        
@@ -50,18 +56,28 @@ class GrindProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         self.setUpCollectionView()
         self.fetchPopularSearches()
-        self.fecthAllImage()
-        view.addSubview(profileActivitiesCollection)
+//        self.fecthAllImage()
+        view.addSubview(categoriesCollectionView)
         view.addSubview(collectionView)
         
 //        
-//        profileActivitiesCollection.backgroundColor = .systemCyan
-        profileActivitiesCollection.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, left: view.leadingAnchor, right: view.trailingAnchor, bottom: nil, paddingTop: 5, paddingLeft: 0, paddingRight: 0, paddingBottom: -20, width: nil, height: 42)
+//        categoriesCollectionView.backgroundColor = .systemCyan
+        categoriesCollectionView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, left: view.leadingAnchor, right: view.trailingAnchor, bottom: nil, paddingTop: 5, paddingLeft: 0, paddingRight: 0, paddingBottom: -20, width: nil, height: 42)
         
-        collectionView.anchor(top: self.profileActivitiesCollection.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor, bottom: view.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: -20, width: nil, height: nil)
+        collectionView.anchor(top: self.categoriesCollectionView.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor, bottom: view.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: -20, width: nil, height: nil)
+        // Handle category fetch success
+        categoryService.onCategoriesFetched = { [weak self] in
+            self?.categoriesCollectionView.reloadData()
+        }
         
+        // Handle errors
+        categoryService.onError = { [weak self] errorMessage in
+            self?.showErrorAlert(message: errorMessage)
+        }
        
         
 
@@ -89,13 +105,13 @@ class GrindProfileController: UIViewController {
     func fetchPopularSearches (){
         print("Print popualar searches ")
         
-        NetworkManager.shared.getAllPost(expecting: ApiResponse<[Post]>.self) { [weak self]  result in
+        NetworkManager.shared.getAllPost(expecting: ApiResponse<[PostGroupedByJourney]>.self) { [weak self]  result in
             guard let self  = self else {return}
                    switch result {
        
                    case .success(let response):
                        guard let posts  = response.data else {return}
-                       self.sections.append( posts)
+                       self.sections =  posts
                        DispatchQueue.main.async {
                            self.collectionView.reloadData()
                        }
@@ -119,6 +135,11 @@ class GrindProfileController: UIViewController {
 //        }
         
     }
+    private func showErrorAlert(message: String) {
+           let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+           alert.addAction(UIAlertAction(title: "OK", style: .default))
+           self.present(alert, animated: true)
+       }
   
     
     
@@ -129,7 +150,7 @@ class GrindProfileController: UIViewController {
         collectionView.register(GrindProfileCelll.self, forCellWithReuseIdentifier: identifierGriendCell)
         collectionView.register(Header.self, forSupplementaryViewOfKind: GrindProfileController.headerId, withReuseIdentifier: headerGrinderLabelId)
         
-        profileActivitiesCollection.register(ProfileFilterCell.self, forCellWithReuseIdentifier: identifierFilterrCell)
+        categoriesCollectionView.register(CategoryFilterCell.self, forCellWithReuseIdentifier: identifierFilterrCell)
 //        collectionView.register(Header.self, forSupplementaryViewOfKind: HomeViewController.headerJustLabel, withReuseIdentifier: featureProductHeaderId)
 //        collectionView.register(Header.self, forSupplementaryViewOfKind: HomeViewController.headerJustLabel, withReuseIdentifier: recommendedHeaderId)
 //        collectionView.register(Header.self, forSupplementaryViewOfKind: HomeViewController.headerJustLabel, withReuseIdentifier: tagPopularSearchHeaderId)
@@ -139,13 +160,20 @@ class GrindProfileController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        profileActivitiesCollection.delegate = self
-        profileActivitiesCollection.dataSource = self
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
         
         
 //
 //        collectionView.refreshControl = UIRefreshControl()
 //        collectionView.refreshControl?.addTarget(self, action: #selector(refreshingData), for: .valueChanged)
+    }
+    
+    @objc func refreshCollectionView() {
+        // Refresh your data source here
+        // For example, fetch new data or reload existing data
+        self.fetchPopularSearches()
+        collectionView.refreshControl?.endRefreshing() // End the refreshing animation
     }
     //MARK: -COMPOSITIONAL LAYOUT
     static func createLayout() -> UICollectionViewCompositionalLayout{
@@ -293,18 +321,18 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        if collectionView == profileActivitiesCollection{
+        if collectionView == categoriesCollectionView{
             return 1
         }
         return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == profileActivitiesCollection{
-            return categories.count
+        if collectionView == categoriesCollectionView{
+            print(categoryService.getCategoryCount())
+            return categoryService.getCategoryCount()
         }
-        return sections[section].count
-        
+        return sections[section].posts.count
 //        }else if section == 1{
 //            return min(allproducts.count, 3)
 //        }
@@ -316,11 +344,11 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == profileActivitiesCollection{
-            let cell  =  collectionView.dequeueReusableCell(withReuseIdentifier: identifierFilterrCell, for: indexPath) as! ProfileFilterCell
+        if collectionView == categoriesCollectionView{
+            let cell  =  collectionView.dequeueReusableCell(withReuseIdentifier: identifierFilterrCell, for: indexPath) as! CategoryFilterCell
+            let category = categoryService.getCategory(at: indexPath.row)
             
-            
-            cell.tagName.text = categories[indexPath.row]
+            cell.tagName.text = category.name
             return cell
             
            
@@ -328,7 +356,7 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
         
       
             let cell  =  collectionView.dequeueReusableCell(withReuseIdentifier: identifierGriendCell, for: indexPath) as! GrindProfileCelll
-            cell.post = sections[indexPath.section][indexPath.row]
+            cell.post =  sections[indexPath.section].posts[indexPath.row]
 //            cell.mainImage.image =  UIImage(named: "template2")
             return cell
 //        }else if   indexPath.section == 1{
@@ -399,19 +427,20 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
 //            
 //            
             
-            
+      
         let header =  collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerGrinderLabelId, for: indexPath) as! Header
-        header.label.text =  sections[indexPath.section].first?.category
+        header.label.text =   "Journey \(sections[indexPath.section].journeyId)" // Customise as needed
+        header.delegate = self
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if collectionView ==  profileActivitiesCollection{
-            let item =  categories[indexPath.row]
+        if collectionView ==  categoriesCollectionView{
+            let itemName =  CategoryService.shared.getCategory(at: indexPath.row).name
          
-                let stringWidth = item.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)]).width + 20
-            return CGSize(width: stringWidth, height: profileActivitiesCollection.bounds.height - 16)
+            let stringWidth = itemName.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)]).width + 20
+            return CGSize(width: stringWidth, height: categoriesCollectionView.bounds.height - 16)
             
             
             
@@ -425,15 +454,19 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
     
 
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        if indexPath.section == 1{
-//            let controller  = ProductViewController(product:  allproducts[indexPath.row])
-//      
-//            navigationController?.pushViewController(controller, animated: true)
-//            
-//            
-//            
-//        }else if indexPath.section == 2{
+        
+        let post = sections[indexPath.section].posts[indexPath.row]
+            let controller  = InvidualPostController(post: post)
+      
+            navigationController?.pushViewController(controller, animated: true)
+            
+            
+            
+//        }
+        
+//        else if indexPath.section == 2{
 //            let controller  = ProductViewController(product:  allproducts[allproducts.count - 1])
 //            
 //            navigationController?.pushViewController(controller, animated: true)
@@ -446,10 +479,22 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
 //            
 //            
 //        }
-//        
-//    }
+        
+    }
     
     
+    
+    
+}
+
+extension GrindProfileController : HeaderDelegate{
+    func diTapViewMorePosts(indexPath : IndexPath?) {
+        print("Tapped the delegate")
+        let layout  =  UICollectionViewFlowLayout()
+        let controller  = GrindCalendarViewController(collectionViewLayout: layout)
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
     
     
 }
@@ -457,32 +502,35 @@ extension GrindProfileController :  UICollectionViewDataSource, UICollectionView
     
     
     
-
+protocol HeaderDelegate: AnyObject {
+    func diTapViewMorePosts(indexPath : IndexPath?)
+}
 class Header : UICollectionReusableView {
+    
+    weak var delegate : HeaderDelegate?
+    var indexPath : IndexPath?
 
     var label : UILabel  = {
         let label = UILabel()
         label.text =  "Categories"
-        label.font =  UIFont.boldSystemFont(ofSize: 24)
+        label.font =  UIFont.boldSystemFont(ofSize: 16)
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    var viewAllLabel : UILabel =  {
-        let label =  UILabel()
-        label.text =  "View All"
-        label.textColor =  .systemBlue
-        label.font =  UIFont.systemFont(ofSize: 18)
-        label.isUserInteractionEnabled = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.sizeToFit()
-        return label
+    var viewMore:  UIButton =  {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.forward"), for: .normal)
+        
+        return button
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
+        addSubview(viewMore)
+        viewMore.addTarget(self, action: #selector(viewMoreTapped), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -492,7 +540,14 @@ class Header : UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         label.anchor(top: nil, left: leadingAnchor, right: nil, bottom: nil, paddingTop: nil, paddingLeft: 0, paddingRight: nil, paddingBottom: nil, width: nil, height: nil)
+        viewMore.anchor(top: nil, left: nil, right: trailingAnchor, bottom: nil, paddingTop: nil, paddingLeft: 0, paddingRight: -5, paddingBottom: nil, width: 20, height: 20)
         label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive  = true
+        viewMore.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 0).isActive = true
+        
+    }
+    
+    @IBAction func viewMoreTapped(_ sender: UIButton) {
+        delegate?.diTapViewMorePosts(indexPath: self.indexPath)
     }
 
 }

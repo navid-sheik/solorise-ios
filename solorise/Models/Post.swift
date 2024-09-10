@@ -17,6 +17,7 @@ struct Post: Codable {
     let user: String
     let version: Int?
     let category: String?
+    let journey : GenericIdentifier<Journey>?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -25,6 +26,7 @@ struct Post: Codable {
         case user
         case category
         case version = "__v"
+        case journey
     }
 }
 
@@ -38,4 +40,16 @@ struct Image: Codable {
 struct ImagesResponse: Codable {
     var message : String
     var all_images: [Image]
+}
+
+
+// Define a structure for posts grouped by their associated journey.
+struct PostGroupedByJourney: Codable {
+    let journeyId: String
+    var posts: [Post]
+
+    enum CodingKeys: String, CodingKey {
+        case journeyId = "journeyId"
+        case posts
+    }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct User: Codable {
     let userId: String
     var name: String
@@ -36,5 +37,48 @@ struct User: Codable {
         case googleId = "google_id"
         case profilePic = "profile_pic"
         case deactivationReason = "deactivation_reason"
+    }
+}
+
+
+enum UserIdentifier: Codable {
+    case string(String)
+    case user(User)
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        // Debugging
+        print("Debug container: \(container)")
+        
+        // Try to decode as a String
+        if let idString = try? container.decode(String.self) {
+            self = .string(idString)
+            return
+        }
+        
+        // Try to decode as a Seller object
+        if let sellerObject = try? container.decode(User.self) {
+            self = .user(sellerObject)
+            return
+        }
+        
+        // Debugging
+        print("Failed to decode either as String or Seller object.")
+        
+        throw DecodingError.typeMismatch(UserIdentifier.self,
+                                         DecodingError.Context(codingPath: decoder.codingPath,
+                                                               debugDescription: "Mismatched Types"))
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .string(let idString):
+            try container.encode(idString)
+        case .user(let userObject):
+            try container.encode(userObject)
+        }
     }
 }

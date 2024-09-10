@@ -13,4 +13,6 @@ enum Endpoint : String{
     case test
     case post
     case upload
+    case journey
+    case category
 }

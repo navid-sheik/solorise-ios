@@ -33,6 +33,8 @@ class SecondViewController: UIViewController {
     var activeInput: AVCaptureDeviceInput!
     var outputURL: URL!
     
+    var currentCameraPosition: AVCaptureDevice.Position = .back
+    
     let shutterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
@@ -99,6 +101,23 @@ class SecondViewController: UIViewController {
         shutterButton.addGestureRecognizer(longPressRecognizer)
         
         setupCustomBackButton()
+        
+        
+        // Add the camera toggle button
+        // Add the camera toggle button
+        let switchCameraButton = UIButton(type: .system)
+        switchCameraButton.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera"), for: .normal)
+        switchCameraButton.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
+
+        // Add the button to the view
+        view.addSubview(switchCameraButton)
+
+        // Use anchor to position the button instead of setting the frame directly
+        switchCameraButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                  right: view.trailingAnchor,
+                                  paddingTop: 20, paddingRight: 20,
+                                  width: 50, height: 50)
+
     }
     
     func setupCustomBackButton() {
@@ -130,13 +149,13 @@ class SecondViewController: UIViewController {
             AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
                 guard granted else { return }
                 DispatchQueue.main.async {
-                    self?.setUpCamera()
+                    self?.setUpCamera(position: self?.currentCameraPosition ?? .back)
                 }
             }
         case .restricted, .denied:
             break
         case .authorized:
-            setUpCamera()
+            setUpCamera(position: currentCameraPosition)
         @unknown default:
             break
         }
@@ -165,31 +184,51 @@ class SecondViewController: UIViewController {
         }
     }
     
-    private func setUpCamera() {
+    private func setUpCamera(position: AVCaptureDevice.Position) {
         DispatchQueue.global(qos: .userInitiated).async {
-            let session = AVCaptureSession()
-            if let device = AVCaptureDevice.default(for: .video) {
+            let session = self.session ?? AVCaptureSession() // Use existing session if available
+            
+            // Select the appropriate camera based on the position
+            if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position) {
                 do {
                     let input = try AVCaptureDeviceInput(device: device)
+                    
+                    // Remove existing inputs before adding a new one
+                    if let currentInput = self.session?.inputs.first as? AVCaptureDeviceInput {
+                        self.session?.removeInput(currentInput)
+                    }
+
+                    // Add the new input to the session
                     if session.canAddInput(input) {
                         session.addInput(input)
                     }
+                    
+                    // Configure outputs (photo and video)
                     if session.canAddOutput(self.output) {
                         session.addOutput(self.output)
                     }
                     if session.canAddOutput(self.videoOutput) {
                         session.addOutput(self.videoOutput)
                     }
-                    self.previewLayer.videoGravity = .resizeAspectFill
-                    self.previewLayer.session = session
-                    session.startRunning()
-                    self.session = session
+                    
+                    // Make UI changes (preview layer) on the main thread
+                    DispatchQueue.main.async {
+                        self.previewLayer.videoGravity = .resizeAspectFill
+                        self.previewLayer.session = session
+                    }
+                    
+                    // Start the session on a background thread
+                    DispatchQueue.global(qos: .background).async {
+                        session.startRunning()
+                        self.session = session
+                    }
                 } catch {
-                    print(error)
+                    print("Error setting up the camera input: \(error)")
                 }
             }
         }
     }
+
     
     @objc private func didTapTakePhoto() {
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
@@ -213,6 +252,26 @@ class SecondViewController: UIViewController {
         imagePickerController.mediaTypes = ["public.image", "public.movie"]
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    @objc func toggleCamera() {
+        // Stop the session before switching cameras
+        session?.beginConfiguration()
+        
+        // Remove all existing inputs
+        if let currentInput = session?.inputs.first as? AVCaptureDeviceInput {
+            session?.removeInput(currentInput)
+        }
+
+        // Toggle the camera position
+        currentCameraPosition = (currentCameraPosition == .back) ? .front : .back
+
+        // Reconfigure the camera with the new position
+        setUpCamera(position: currentCameraPosition)
+
+        session?.commitConfiguration()
+    }
+
+
     
     private func startRecording() {
         guard let session = session, session.isRunning, !isRecording else { return }
